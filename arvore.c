@@ -104,3 +104,43 @@ int ab_max(No *raiz)
 
     return ab_max(raiz->no_direita);
 }
+
+No* encontrar_menor_valor(No* no){ 
+    No* atual = no;
+
+    while (atual->no_esquerda != NULL){
+        atual = atual->no_esquerda;
+    }
+
+    return atual;
+}
+
+No* ab_remover_no(No* raiz, int valor){
+    if (raiz == NULL){
+        return raiz;
+    }
+
+    if (valor < raiz->valor){
+        raiz->no_esquerda = ab_remover_no(raiz->no_esquerda, valor);
+    } else if (valor > raiz->valor){
+        raiz->no_direita = ab_remover_no(raiz->no_direita, valor);
+    } else {
+        if (raiz->no_esquerda == NULL){
+            No* temp = raiz->no_direita;
+            free(raiz);
+            return temp;
+        } else if (raiz->no_direita == NULL){
+            No* temp = raiz->no_esquerda;
+            free(raiz);
+            return temp;
+        }
+
+        No* temp = encontrar_menor_valor(raiz->no_direita);
+
+        raiz->valor = temp->valor;
+ 
+        raiz->no_direita = ab_remover_no(raiz->no_direita, temp->valor);
+    }
+
+    return raiz;
+}
