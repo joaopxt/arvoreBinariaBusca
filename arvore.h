@@ -16,3 +16,5 @@ void ab_imprimir_pos_order(No *raiz);
 
 int ab_min(No *raiz);
 int ab_max(No *raiz);
+
+No* ab_remover_no(No* raiz, int valor);

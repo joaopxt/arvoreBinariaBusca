@@ -34,6 +34,15 @@ int main(int argc, char *argv[])
     printf("O valor minimo da arvore e: %d", ab_min(raiz));
     printf("\n\n");
     printf("O valor maximo da arvore e: %d", ab_max(raiz));
+    printf("\n\n");
+
+    int valor_remover = 7;
+    printf("Removendo o numero: %d\n\n", valor_remover);
+    raiz = ab_remover_no(raiz, valor_remover);
+
+    printf("Arvore em ordem apos remocao: ");
+    ab_imprimir_em_ordem(raiz);
+    printf("\n\n");
 
     return 0;
 }
